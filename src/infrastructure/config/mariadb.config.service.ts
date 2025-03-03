@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { UserSchema } from '../database/persistence/schemas/user.schema';
 
 @Injectable()
 export class MariaDBConfigService implements TypeOrmOptionsFactory {
@@ -14,7 +15,7 @@ export class MariaDBConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get<string>('DB_USER'),
       password: this.configService.get<string>('DB_PASS'),
       database: this.configService.get<string>('DB_NAME'),
-      entities: [__dirname + '/**/*.schema{.js,.ts}'],
+      entities: [UserSchema],
       synchronize: false,
     };
   }
