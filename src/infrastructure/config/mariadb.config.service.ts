@@ -14,8 +14,8 @@ export class MariaDBConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get<string>('DB_USER'),
       password: this.configService.get<string>('DB_PASS'),
       database: this.configService.get<string>('DB_NAME'),
-      entities: [], // Add your entities here
-      synchronize: true,
+      entities: [__dirname + '/**/*.schema{.js,.ts}'],
+      synchronize: false,
     };
   }
 }
